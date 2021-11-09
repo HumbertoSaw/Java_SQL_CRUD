@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import Class.Conectar;
 import com.sun.source.tree.TryTree;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyEditorSupport;
 import java.sql.*;
 import java.sql.Connection;
@@ -27,13 +29,54 @@ public class Principal extends javax.swing.JFrame{
                 this.setLocationRelativeTo(null);
                 limpiar();
                 mostrarTabla("");
-                txtID.setEnabled(false);
+                //txtID.setEnabled(false);
+
+                // adding a action to the save button
+                saveBtn.addActionListener(new ActionListener()
+                {
+                        @Override
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                try
+                                {
+                                        String sqlSentence1 ="INSERT INTO libros (Id_Libro,ISBD_LIBRO,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+                                        PreparedStatement ps = cn.prepareStatement(sqlSentence1);
+                                        ps.setString(1, txtID.getText() );
+                                        ps.setString(2, txtIsbn.getText());
+                                        ps.setString(3, txtTitle.getText());
+                                        ps.setString(4, txtAuthor.getText());
+                                        ps.setString(5, txtLastName.getText());
+                                        ps.setString(6, txtLastName2.getText());
+                                        ps.setString(7, txtDatePub.getText());
+                                        ps.setString(8, txtEditorial.getText());
+                                        ps.setString(9, txtEdition.getText());
+                                        ps.setString(10,txtGenere.getText());
+
+                                        ps.executeUpdate();
+
+                                        limpiar();
+                                        mostrarTabla("");
+
+
+                                }
+                                catch (SQLException exception)
+                                {
+                                        System.err.println("Error al guardar. . . " + exception);
+                                        JOptionPane.showMessageDialog(null,"Error al llenado de la tabla");
+
+
+                                }
+                        }
+                });
+
 
         }
         //Metodos usados en el constructor
         //Metodo limpiar campos de escritura
         void limpiar(){
                 txtID.setText("");
+                txtIsbn.setText("");
                 txtTitle.setText("");
                 txtAuthor.setText("");
                 txtLastName.setText("");
@@ -48,6 +91,7 @@ public class Principal extends javax.swing.JFrame{
                 DefaultTableModel modelo = new DefaultTableModel();
 
                 modelo.addColumn("ID");
+                modelo.addColumn("ISBN");
                 modelo.addColumn("TITULO");
                 modelo.addColumn("NOMBRE");
                 modelo.addColumn("PRIMER APELLIDO");
@@ -60,7 +104,7 @@ public class Principal extends javax.swing.JFrame{
                 table.setModel(modelo);
                 String sql = "select * from Libros where concat (Titulo_Libro,' ',Nombre_Autor_Libro) LIKE '%"+string+"%'";
 
-                String datos[]=new String[9];
+                String datos[]=new String[10];
 
                 Statement st;
 
@@ -77,6 +121,7 @@ public class Principal extends javax.swing.JFrame{
                                 datos[6]=rs.getString(7);
                                 datos[7]=rs.getString(8);
                                 datos[8]=rs.getString(9);
+                                datos[9]=rs.getString(10);
 
                                 modelo.addRow(datos);
                         }

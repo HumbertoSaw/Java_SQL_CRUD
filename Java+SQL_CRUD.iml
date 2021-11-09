@@ -10,7 +10,16 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Descargas_2/Drivers/mysql-connector-java-5.1.24-bin.jar!/" />
+          <root url="jar://C:/Users/Descargas_2/Drivers/mysql-connector-java-5.1.24-bin.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/Drivers/mysql-connector-java-5.1.24-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

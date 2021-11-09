@@ -7,9 +7,11 @@ import javax.swing.table.DefaultTableModel;
 
 import Class.Conectar;
 import com.sun.source.tree.TryTree;
+import org.w3c.dom.events.MouseEvent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.beans.PropertyEditorSupport;
 import java.sql.*;
 import java.sql.Connection;
@@ -23,15 +25,16 @@ import java.sql.Connection;
  */
 public class Principal extends javax.swing.JFrame{
 
-        //Constructor pricipal de la clase interface principal
+        //Pricipal construct for the class
         public Principal (){
 
+                //Vital variables and declaration of methods
                 this.setLocationRelativeTo(null);
                 limpiar();
                 mostrarTabla("");
                 //txtID.setEnabled(false);
 
-                // adding a action to the save button
+                // adding an action to the save button
                 saveBtn.addActionListener(new ActionListener()
                 {
                         @Override
@@ -39,7 +42,7 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try
                                 {
-                                        String sqlSentence1 ="INSERT INTO libros (Id_Libro,ISBD_LIBRO,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                                        String sqlSentence1 ="INSERT INTO libros (Id_Libro,ISBD_Libro,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
                                         PreparedStatement ps = cn.prepareStatement(sqlSentence1);
                                         ps.setString(1, txtID.getText() );
@@ -57,21 +60,64 @@ public class Principal extends javax.swing.JFrame{
 
                                         limpiar();
                                         mostrarTabla("");
-
-
                                 }
                                 catch (SQLException exception)
                                 {
                                         System.err.println("Error al guardar. . . " + exception);
                                         JOptionPane.showMessageDialog(null,"Error al llenado de la tabla");
-
-
                                 }
                         }
                 });
 
+                // adding an action to the update button
+                updateBtn.addActionListener(new ActionListener(){
+                        @Override
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                try{
+                                        PreparedStatement ps =cn.prepareStatement("UPDATE LIbros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE id='"+txtID.getText()+"'");
+
+                                        int respuesta = ps.executeUpdate();
+
+                                        if(respuesta>0){
+                                                JOptionPane.showMessageDialog(null, "El registro ah sido actualizado");
+                                                limpiar();
+                                                mostrarTabla("");
+                                        }
+                                        else{
+                                                JOptionPane.showMessageDialog(null,"No ah seleccionado fila");
+                                        }
+
+                                }
+                                catch (SQLException exception){
+                                        System.err.println("Error al actualizar registro. . . " + exception);
+                                        JOptionPane.showMessageDialog(null,"Error al actualizar registro. . .");
+                                }
+                        }
+
+                });
+
+                //table.addMouseListener(new java.awt.event.MouseEvent(){
+                //        @Override
+                //        private void tableMouseClicked (java.awt.event.MouseEvent evt) {
+                /*                int fila = this.table.getSelectedRow();
+
+                                this.txtID.setText(this.table.getValueAt(fila, 0).toString());
+                                this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
+                                this.txtTitle.setText(this.table.getValueAt(fila, 2).toString());
+                                this.txtAuthor.setText(this.table.getValueAt(fila, 3).toString());
+                                this.txtLastName.setText(this.table.getValueAt(fila, 4).toString());
+                                this.txtLastName2.setText(this.table.getValueAt(fila, 5).toString());
+                                this.txtDatePub.setText(this.table.getValueAt(fila, 6).toString());
+                                this.txtEditorial.setText(this.table.getValueAt(fila, 7).toString());
+                                this.txtEdition.setText(this.table.getValueAt(fila, 8).toString());
+                                this.txtGenere.setText(this.table.getValueAt(fila, 9).toString());
+                        }
+                });*/
 
         }
+
+
         //Metodos usados en el constructor
         //Metodo limpiar campos de escritura
         void limpiar(){

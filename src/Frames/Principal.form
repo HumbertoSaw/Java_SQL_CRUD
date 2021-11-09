@@ -257,7 +257,7 @@
               <background color="-1"/>
             </properties>
           </component>
-          <component id="7d421" class="javax.swing.JTextField" binding="txtGender">
+          <component id="7d421" class="javax.swing.JTextField" binding="txtGenere">
             <constraints>
               <grid row="9" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

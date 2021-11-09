@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Frames.Principal">
+  <grid id="27dc6" binding="Jpanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="709" height="661"/>
+    </constraints>
+    <properties>
+      <background color="-1973791"/>
+      <font name="Verdana"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="cec77" class="javax.swing.JLabel" binding="LabelRegistroLibros">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <font name="Verdana" size="18"/>
+          <foreground color="-16777216"/>
+          <text value="Registro de libros"/>
+        </properties>
+      </component>
+      <grid id="41950" binding="PanelRegistroLibros" layout-manager="GridLayoutManager" row-count="12" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-8750470"/>
+          <font name="Verdana" size="16" style="1"/>
+          <inheritsPopupMenu value="false"/>
+          <name value="textField2"/>
+        </properties>
+        <border type="line" title="Registro de libros" title-justification="2">
+          <font name="Verdana" size="16" style="1"/>
+          <color color="-10589253"/>
+        </border>
+        <children>
+          <component id="95f2d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="ID"/>
+            </properties>
+          </component>
+          <component id="26a5a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="ISBN"/>
+            </properties>
+          </component>
+          <component id="2dbcb" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Titulo"/>
+            </properties>
+          </component>
+          <component id="a40ee" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Autor"/>
+            </properties>
+          </component>
+          <component id="4591a" class="javax.swing.JTextField" binding="txtID">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <doubleBuffered value="false"/>
+              <dragEnabled value="false"/>
+              <font name="Verdana" size="16"/>
+              <selectedTextColor color="-1"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="4e6fb" class="javax.swing.JTextField" binding="txtTitle">
+            <constraints>
+              <grid row="2" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <font name="Verdana" size="16"/>
+              <selectedTextColor color="-1"/>
+            </properties>
+          </component>
+          <component id="c43a3" class="javax.swing.JTextField" binding="txtAuthor">
+            <constraints>
+              <grid row="3" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <font name="Verdana" size="16"/>
+              <selectedTextColor color="-1"/>
+            </properties>
+          </component>
+          <component id="be0ba" class="javax.swing.JTextField" binding="txtIsbn">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <font name="Verdana" size="16"/>
+              <selectedTextColor color="-1"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="34c52" class="javax.swing.JButton" binding="updateBtn">
+            <constraints>
+              <grid row="10" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+              <background color="-8750470"/>
+              <borderPainted value="false"/>
+              <selected value="false"/>
+              <text value="Actualizar"/>
+            </properties>
+          </component>
+          <component id="e3f99" class="javax.swing.JButton" binding="saveBtn">
+            <constraints>
+              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+              <background color="-8750470"/>
+              <borderPainted value="false"/>
+              <selected value="false"/>
+              <text value="Guardar"/>
+            </properties>
+          </component>
+          <component id="4e12f" class="javax.swing.JButton" binding="cancelBtn">
+            <constraints>
+              <grid row="11" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+              <background color="-8750470"/>
+              <borderPainted value="false"/>
+              <selected value="false"/>
+              <text value="Cancelar"/>
+            </properties>
+          </component>
+          <component id="31f2c" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Primer apellido"/>
+            </properties>
+          </component>
+          <component id="78456" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Segundo apellido"/>
+            </properties>
+          </component>
+          <component id="1e915" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Fecha de publicación"/>
+            </properties>
+          </component>
+          <component id="84616" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Editorial"/>
+            </properties>
+          </component>
+          <component id="cf1d4" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Edición"/>
+            </properties>
+          </component>
+          <component id="57251" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Genero"/>
+            </properties>
+          </component>
+          <component id="bb711" class="javax.swing.JTextField" binding="txtLastName">
+            <constraints>
+              <grid row="4" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+          </component>
+          <component id="f1254" class="javax.swing.JTextField" binding="txtLastName2">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+          </component>
+          <component id="a37fc" class="javax.swing.JTextField" binding="txtDatePub">
+            <constraints>
+              <grid row="6" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+          </component>
+          <component id="9e374" class="javax.swing.JTextField" binding="txtEditorial">
+            <constraints>
+              <grid row="7" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+          </component>
+          <component id="c29c9" class="javax.swing.JTextField" binding="txtEdition">
+            <constraints>
+              <grid row="8" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+          </component>
+          <component id="7d421" class="javax.swing.JTextField" binding="txtGender">
+            <constraints>
+              <grid row="9" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="8f006" class="javax.swing.JTable" binding="table">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-8750470"/>
+          <font name="Verdana" size="16"/>
+          <gridColor color="-5719885"/>
+        </properties>
+      </component>
+      <component id="411ac" class="javax.swing.JButton" binding="reportButton">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <actionCommand value="ImprimirReporte"/>
+          <autoscrolls value="false"/>
+          <background color="-1973791"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="false"/>
+          <defaultCapable value="true"/>
+          <doubleBuffered value="false"/>
+          <foreground color="-16777216"/>
+          <opaque value="false"/>
+          <text value="Imprimir reporte"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

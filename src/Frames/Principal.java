@@ -7,11 +7,8 @@ import javax.swing.table.DefaultTableModel;
 
 import Class.Conectar;
 import com.sun.source.tree.TryTree;
-import org.w3c.dom.events.MouseEvent;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.beans.PropertyEditorSupport;
 import java.sql.*;
 import java.sql.Connection;
@@ -24,10 +21,14 @@ import java.sql.Connection;
  *
  */
 public class Principal extends javax.swing.JFrame{
-
-        //Pricipal construct for the class
+        
+        
+        
+        //Principal construct for the class
         public Principal (){
-
+                
+                
+                
                 //Vital variables and declaration of methods
                 this.setLocationRelativeTo(null);
                 limpiar();
@@ -75,7 +76,7 @@ public class Principal extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e)
                         {
                                 try{
-                                        PreparedStatement ps =cn.prepareStatement("UPDATE LIbros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE id='"+txtID.getText()+"'");
+                                        PreparedStatement ps =cn.prepareStatement("UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE id='"+txtID.getText()+"'");
 
                                         int respuesta = ps.executeUpdate();
 
@@ -97,26 +98,18 @@ public class Principal extends javax.swing.JFrame{
 
                 });
 
-                //table.addMouseListener(new java.awt.event.MouseEvent(){
-                //        @Override
-                //        private void tableMouseClicked (java.awt.event.MouseEvent evt) {
-                /*                int fila = this.table.getSelectedRow();
+                table.addMouseListener(new MouseAdapter()
+                {
 
-                                this.txtID.setText(this.table.getValueAt(fila, 0).toString());
-                                this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
-                                this.txtTitle.setText(this.table.getValueAt(fila, 2).toString());
-                                this.txtAuthor.setText(this.table.getValueAt(fila, 3).toString());
-                                this.txtLastName.setText(this.table.getValueAt(fila, 4).toString());
-                                this.txtLastName2.setText(this.table.getValueAt(fila, 5).toString());
-                                this.txtDatePub.setText(this.table.getValueAt(fila, 6).toString());
-                                this.txtEditorial.setText(this.table.getValueAt(fila, 7).toString());
-                                this.txtEdition.setText(this.table.getValueAt(fila, 8).toString());
-                                this.txtGenere.setText(this.table.getValueAt(fila, 9).toString());
+                        public void mouseClicked(MouseEvent e)
+                        {
+                                super.mouseClicked(e);
+                                selecionarFila();
                         }
-                });*/
-
+                });
         }
-
+        
+        
 
         //Metodos usados en el constructor
         //Metodo limpiar campos de escritura
@@ -132,6 +125,22 @@ public class Principal extends javax.swing.JFrame{
                 txtEdition.setText("");
                 txtGenere.setText("");
         }
+
+        void selecionarFila()
+        {
+                int fila = this.table.getSelectedRow();
+                this.txtID.setText(this.table.getValueAt(fila, 0).toString());
+                this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
+                this.txtTitle.setText(this.table.getValueAt(fila, 2).toString());
+                this.txtAuthor.setText(this.table.getValueAt(fila, 3).toString());
+                this.txtLastName.setText(this.table.getValueAt(fila, 4).toString());
+                this.txtLastName2.setText(this.table.getValueAt(fila, 5).toString());
+                this.txtDatePub.setText(this.table.getValueAt(fila, 6).toString());
+                this.txtEditorial.setText(this.table.getValueAt(fila, 7).toString());
+                this.txtEdition.setText(this.table.getValueAt(fila, 8).toString());
+                this.txtGenere.setText(this.table.getValueAt(fila, 9).toString());
+        }
+
         //Metodo que muestra informacion de la tabla
         void mostrarTabla(String string){
                 DefaultTableModel modelo = new DefaultTableModel();
@@ -209,10 +218,13 @@ public class Principal extends javax.swing.JFrame{
         private JTextField txtGenere;
         private JTextField txtTitle;
         // End of the elements used on the form
-
+        
         Conectar con = new Conectar();
         Connection cn = con.conexion();
-
+        
+        
+        
+        
         /**
          * Main method that allow run the form called: Principal
          * @param args

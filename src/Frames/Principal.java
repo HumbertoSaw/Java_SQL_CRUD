@@ -17,14 +17,15 @@ import java.sql.Connection;
 /**
  *
  * Class that allow to a user insert new information on the DB
- * Version: 08/11/2021
+ * Version: 10/11/2021
  *
  */
 public class Principal extends javax.swing.JFrame{
-        
-        
-        
-        //Principal construct for the class
+
+
+        /**
+         * Constructor of the Principal class
+         */
         public Principal (){
                 
                 
@@ -76,10 +77,8 @@ public class Principal extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e)
                         {
                                 try{
-                                         //PreparedStatement ps =cn.prepareStatement("UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE Id_Libro='"+txtID.getText()+"'");
 
                                         PreparedStatement ps =cn.prepareStatement("UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE Id_libro='"+txtID.getText()+"'");
-
 
                                         int respuesta = ps.executeUpdate();
 
@@ -115,28 +114,30 @@ public class Principal extends javax.swing.JFrame{
                 // The main functions when a user press the DELETE button.
                 deleteBtn.addActionListener(new ActionListener() {
                         @Override
-                        public void actionPerformed(ActionEvent e) {
+                        public void actionPerformed(ActionEvent e)
+                        {
                                 try{
-                        // Create a string with the SQLStatement
-                        String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
-                        PreparedStatement ps = cn.prepareStatement(sqlStatement);
+                                // Create a string with the SQLStatement
+                                String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
+                                PreparedStatement ps = cn.prepareStatement(sqlStatement);
 
-                int respuesta = ps.executeUpdate();
+                                int respuesta = ps.executeUpdate();
 
-                if(respuesta > 0)
-                {
-                        JOptionPane.showMessageDialog(null,"Libro eliminado");
-                        limpiar();
-                        mostrarTabla("");
-                }
-                else {
+                                if(respuesta > 0)
+                                {
 
-                        JOptionPane.showMessageDialog(null,"No ha seleccionado una fila");
-                }
-                } catch (SQLException exception) {
-                        System.err.println("Error al eliminar. . ." + exception);
-                        JOptionPane.showMessageDialog(null,"Error al eliminar");
-                }
+                                        JOptionPane.showMessageDialog(null,"Libro eliminado");
+                                        limpiar();
+                                        mostrarTabla("");
+                                }
+                                else {
+
+                                        JOptionPane.showMessageDialog(null,"No ha seleccionado una fila");
+                                }
+                                } catch (SQLException exception) {
+                                        System.err.println("Error al eliminar. . ." + exception);
+                                        JOptionPane.showMessageDialog(null,"Error al eliminar");
+                                }
                         }
                 });
 
@@ -157,12 +158,9 @@ public class Principal extends javax.swing.JFrame{
                 });
         }
 
-
-        
-        
-
-        //Metodos usados en el constructor
-        //Metodo limpiar campos de escritura
+        /**
+         * Function that clean the txt fields.
+         */
         void limpiar(){
                 txtID.setText("");
                 txtIsbn.setText("");
@@ -176,19 +174,28 @@ public class Principal extends javax.swing.JFrame{
                 txtGenere.setText("");
         }
 
+        /**
+         * Method that helps with the selection of the row
+         */
         void selecionarFila()
         {
-                int fila = this.table.getSelectedRow();
-                this.txtID.setText(this.table.getValueAt(fila, 0).toString());
-                this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
-                this.txtTitle.setText(this.table.getValueAt(fila, 2).toString());
-                this.txtAuthor.setText(this.table.getValueAt(fila, 3).toString());
-                this.txtLastName.setText(this.table.getValueAt(fila, 4).toString());
-                this.txtLastName2.setText(this.table.getValueAt(fila, 5).toString());
-                this.txtDatePub.setText(this.table.getValueAt(fila, 6).toString());
-                this.txtEditorial.setText(this.table.getValueAt(fila, 7).toString());
-                this.txtEdition.setText(this.table.getValueAt(fila, 8).toString());
-                this.txtGenere.setText(this.table.getValueAt(fila, 9).toString());
+                // This section help to the view that do not generate a very large err
+                // This do not break anything is just for debug proposes
+                try {
+                        int fila = this.table.getSelectedRow();
+                        this.txtID.setText(this.table.getValueAt(fila, 0).toString());
+                        this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
+                        this.txtTitle.setText(this.table.getValueAt(fila, 2).toString());
+                        this.txtAuthor.setText(this.table.getValueAt(fila, 3).toString());
+                        this.txtLastName.setText(this.table.getValueAt(fila, 4).toString());
+                        this.txtLastName2.setText(this.table.getValueAt(fila, 5).toString());
+                        this.txtDatePub.setText(this.table.getValueAt(fila, 6).toString());
+                        this.txtEditorial.setText(this.table.getValueAt(fila, 7).toString());
+                        this.txtEdition.setText(this.table.getValueAt(fila, 8).toString());
+                        this.txtGenere.setText(this.table.getValueAt(fila, 9).toString());
+                }catch (IndexOutOfBoundsException index){
+                        System.err.println("Se ha seleccionado fuera de la tabla. . ." + index);
+                }
         }
 
         //Metodo que muestra informacion de la tabla
@@ -239,7 +246,10 @@ public class Principal extends javax.swing.JFrame{
                 }
         }
 
-
+        /**
+         * Main function of the class to view the form.
+         * @param args
+         */
         public static void main(String[] args) {
                 JFrame frame = new JFrame("Principal");
                 frame.setContentPane(new Principal().Jpanel);
@@ -273,14 +283,6 @@ public class Principal extends javax.swing.JFrame{
         
         Conectar con = new Conectar();
         Connection cn = con.conexion();
-
-
-
-        /**
-         * Main method that allow run the form called: Principal
-         * @param args
-         */
-
 
 }
 

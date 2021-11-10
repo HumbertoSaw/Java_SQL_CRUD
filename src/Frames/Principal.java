@@ -57,6 +57,7 @@ public class Principal extends javax.swing.JFrame{
                                         ps.setString(10,txtGenere.getText());
 
                                         ps.executeUpdate();
+                                        JOptionPane.showMessageDialog(null,"Los datos ah sido guardados");
 
                                         limpiar();
                                         mostrarTabla("");
@@ -139,6 +140,21 @@ public class Principal extends javax.swing.JFrame{
                         }
                 });
 
+                
+                txtSearch.addKeyListener(new KeyAdapter() {
+                        @Override
+                        public void keyReleased(KeyEvent e) {
+                                mostrarTabla(txtSearch.getText());
+                        }
+                });
+
+                // Cancel button
+                cancelBtn.addActionListener(new ActionListener() {
+                        @Override
+                        public void  actionPerformed(ActionEvent e){
+                              limpiar();
+                        }
+                });
         }
 
 
@@ -252,6 +268,7 @@ public class Principal extends javax.swing.JFrame{
         private JTextField txtGenere;
         private JTextField txtTitle;
         private JButton deleteBtn;
+        private JTextField txtSearch;
         // End of the elements used on the form
         
         Conectar con = new Conectar();

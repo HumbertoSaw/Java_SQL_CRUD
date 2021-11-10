@@ -33,7 +33,6 @@ public class Principal extends javax.swing.JFrame{
                 this.setLocationRelativeTo(null);
                 limpiar();
                 mostrarTabla("");
-                //txtID.setEnabled(false);
 
                 // adding an action to the save button
                 saveBtn.addActionListener(new ActionListener()
@@ -98,6 +97,7 @@ public class Principal extends javax.swing.JFrame{
 
                 });
 
+                // Adding a mouse click listener to select the row.
                 table.addMouseListener(new MouseAdapter()
                 {
 
@@ -107,7 +107,37 @@ public class Principal extends javax.swing.JFrame{
                                 selecionarFila();
                         }
                 });
+
+                // The main functions when a user press the DELETE button.
+                deleteBtn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                                                                      try{
+                // Create a string with the SQLStatement
+                String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
+                PreparedStatement ps = cn.prepareStatement(sqlStatement);
+                int respuesta = ps.executeUpdate();
+
+                if(respuesta > 0)
+                {
+                        JOptionPane.showMessageDialog(null,"Libro eliminado");
+                        limpiar();
+                        mostrarTabla("");
+                }
+                else {
+
+                        JOptionPane.showMessageDialog(null,"No ha seleccionado una fila");
+                }
+                } catch (SQLException exception) {
+                        System.err.println("Error al eliminar. . ." + exception);
+                        JOptionPane.showMessageDialog(null,"Error al eliminar");
+                }
+                        }
+                });
+
         }
+
+
         
         
 
@@ -217,14 +247,14 @@ public class Principal extends javax.swing.JFrame{
         private JTextField txtEdition;
         private JTextField txtGenere;
         private JTextField txtTitle;
+        private JButton deleteBtn;
         // End of the elements used on the form
         
         Conectar con = new Conectar();
         Connection cn = con.conexion();
-        
-        
-        
-        
+
+
+
         /**
          * Main method that allow run the form called: Principal
          * @param args

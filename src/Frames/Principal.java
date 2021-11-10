@@ -22,6 +22,12 @@ import java.sql.Connection;
  */
 public class Principal extends javax.swing.JFrame{
 
+        // Declaration and initialization of the attributes of the class
+        private String sentenciaSqlInsert;
+        private String sentenciaSqlUpdate;
+        private String sentenciaSqlDelete;
+        private String selecciónTabla = "";
+        private String[] campos;
 
         /**
          * Constructor of the Principal class
@@ -33,7 +39,12 @@ public class Principal extends javax.swing.JFrame{
                 //Vital variables and declaration of methods
                 this.setLocationRelativeTo(null);
                 limpiar();
+                campos = new String[11];
+                for(int i = 0; i < campos.length; i++){
+                        campos[i] = "";
+                }
                 mostrarTabla("");
+                mostrarMenu();
 
                 // adding an action to the save button
                 saveBtn.addActionListener(new ActionListener()
@@ -43,7 +54,7 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try
                                 {
-                                        String sqlSentence1 ="INSERT INTO libros (Id_Libro,ISBD_Libro,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                                        String sqlSentence1 ="INSERT INTO + libros+ (Id_Libro,ISBD_Libro,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
                                         PreparedStatement ps = cn.prepareStatement(sqlSentence1);
                                         ps.setString(1, txtID.getText() );
@@ -156,6 +167,28 @@ public class Principal extends javax.swing.JFrame{
                               limpiar();
                         }
                 });
+
+                // Adding a listener to change into the different tables on the DB
+                comboBox1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                                selecciónTabla = comboBox1.getSelectedItem().toString();
+                                System.out.println("Se ha seleccionado: "+ selecciónTabla);
+                                switch (selecciónTabla)
+                                {
+                                        case"Libros":
+                                                campos = new String[10];
+                                                campos[0] = "ID";
+                                                campos[1] = "ISBN";
+
+                                                mostrarTabla("");
+                                                break;
+
+                                }
+
+                        }
+                });
         }
 
         /**
@@ -182,6 +215,7 @@ public class Principal extends javax.swing.JFrame{
                 // This section help to the view that do not generate a very large err
                 // This do not break anything is just for debug proposes
                 try {
+
                         int fila = this.table.getSelectedRow();
                         this.txtID.setText(this.table.getValueAt(fila, 0).toString());
                         this.txtIsbn.setText(this.table.getValueAt(fila, 1).toString());
@@ -200,18 +234,19 @@ public class Principal extends javax.swing.JFrame{
 
         //Metodo que muestra informacion de la tabla
         void mostrarTabla(String string){
+
                 DefaultTableModel modelo = new DefaultTableModel();
 
-                modelo.addColumn("ID");
-                modelo.addColumn("ISBN");
-                modelo.addColumn("TITULO");
-                modelo.addColumn("NOMBRE");
-                modelo.addColumn("PRIMER APELLIDO");
-                modelo.addColumn("SEGUNDO APELLIDO");
-                modelo.addColumn("PUBLICACION");
-                modelo.addColumn("EDITORIAL");
-                modelo.addColumn("EDICION");
-                modelo.addColumn("GENERO");
+                modelo.addColumn(campos[0]);
+                modelo.addColumn(campos[1]);
+                modelo.addColumn(campos[2]);
+                modelo.addColumn(campos[3]);
+                modelo.addColumn(campos[4]);
+                modelo.addColumn(campos[5]);
+                modelo.addColumn(campos[6]);
+                modelo.addColumn(campos[7]);
+                modelo.addColumn(campos[8]);
+                modelo.addColumn(campos[9]);
 
                 table.setModel(modelo);
                 String sql = "select * from Libros where concat (Titulo_Libro,' ',Nombre_Autor_Libro) LIKE '%"+string+"%'";
@@ -244,6 +279,14 @@ public class Principal extends javax.swing.JFrame{
                         System.err.println("Error al mostrar contenido de la tabla");
                         JOptionPane.showMessageDialog(null,"Error al mostrar contenido de la tabla");
                 }
+        }
+
+        void mostrarMenu()
+        {
+                comboBox1.addItem("Libros");
+                comboBox1.addItem("Revistas");
+                comboBox1.addItem("Investigaciones");
+                comboBox1.addItem("Software");
         }
 
         /**
@@ -279,11 +322,15 @@ public class Principal extends javax.swing.JFrame{
         private JTextField txtTitle;
         private JButton deleteBtn;
         private JTextField txtSearch;
+        private JComboBox comboBox1;
         // End of the elements used on the form
         
         Conectar con = new Conectar();
         Connection cn = con.conexion();
 
+        private void createUIComponents() {
+                // TODO: place custom component creation code here
+        }
 }
 
 

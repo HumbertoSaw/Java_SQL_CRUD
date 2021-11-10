@@ -115,10 +115,11 @@ public class Principal extends javax.swing.JFrame{
                 deleteBtn.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                                                                      try{
-                // Create a string with the SQLStatement
-                String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
-                PreparedStatement ps = cn.prepareStatement(sqlStatement);
+                                try{
+                        // Create a string with the SQLStatement
+                        String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
+                        PreparedStatement ps = cn.prepareStatement(sqlStatement);
+
                 int respuesta = ps.executeUpdate();
 
                 if(respuesta > 0)

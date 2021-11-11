@@ -39,10 +39,12 @@ public class Principal extends javax.swing.JFrame{
                 //Vital variables and declaration of methods
                 this.setLocationRelativeTo(null);
                 limpiar();
+
                 campos = new String[11];
                 for(int i = 0; i < campos.length; i++){
                         campos[i] = "";
                 }
+
                 mostrarTabla("");
                 mostrarMenu();
 
@@ -181,9 +183,60 @@ public class Principal extends javax.swing.JFrame{
                                                 campos = new String[10];
                                                 campos[0] = "ID";
                                                 campos[1] = "ISBN";
+                                                campos[2] = "TITULO";
+                                                campos[3] = "NOMBRE";
+                                                campos[4] = "APELLIDO1";
+                                                campos[5] = "APELLIDO2";
+                                                campos[6] = "PUBLICACION";
+                                                campos[7] = "EDITORIAL";
+                                                campos[8] = "EDICION";
+                                                campos[9] = "GENERO";
 
                                                 mostrarTabla("");
-                                                break;
+                                        break;
+                                        case "Revistas":
+                                                campos = new String[10];
+                                                campos[0] = "ID";
+                                                campos[1] = "ISBN";
+                                                campos[2] = "NOMBRE";
+                                                campos[3] = "ANIO";
+                                                campos[4] = "EDITORIAL";
+                                                campos[5] = "CIUDAD";
+                                                campos[6] = "VOLUMEN";
+                                                campos[7] = "NUMERO";
+                                                campos[8] = "AUTOR";
+                                                campos[9] = "APELLIDO1";
+                                                campos[10] = "APELLIDO2";
+
+                                                mostrarTabla("");
+                                        break;
+                                        case "Investigaciones":
+                                                campos = new String[10];
+                                                campos[0] = "ID";
+                                                campos[1] = "FECHA";
+                                                campos[2] = "NOMBRE";
+                                                campos[3] = "TEMA";
+                                                campos[4] = "AUTOR1";
+                                                campos[5] = "APELLIDO1";
+                                                campos[6] = "APELLIDO2";
+                                                campos[7] = "EDICION";
+                                                campos[8] = "FECHATERMINADO";
+
+                                                mostrarTabla("");
+                                        break;
+                                        case "Software":
+                                                campos = new String[10];
+                                                campos[0] = "ID";
+                                                campos[1] = "NOMBRE";
+                                                campos[2] = "EMPRESA";
+                                                campos[3] = "DESARROLLADOR";
+                                                campos[4] = "FECHA";
+                                                campos[5] = "VERSION";
+                                                campos[6] = "TIPO";
+                                                campos[7] = "COMPATIBILIDAD";
+
+                                                mostrarTabla("");
+                                        break;
 
                                 }
 
@@ -249,9 +302,10 @@ public class Principal extends javax.swing.JFrame{
                 modelo.addColumn(campos[9]);
 
                 table.setModel(modelo);
-                String sql = "select * from Libros where concat (Titulo_Libro,' ',Nombre_Autor_Libro) LIKE '%"+string+"%'";
 
-                String datos[]=new String[10];
+                String sql = "select * from "+ selecciónTabla + " where concat (Titulo_Libro,' ',Nombre_Autor_Libro) LIKE '%"+string+"%'";
+
+                String datos[] = new String[10];
 
                 Statement st;
 

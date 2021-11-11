@@ -45,7 +45,7 @@ public class Principal extends javax.swing.JFrame{
                         campos[i] = "";
                 }
 
-                mostrarTabla("");
+                //mostrarTabla("");
                 mostrarMenu();
 
                 // adding an action to the save button
@@ -181,60 +181,59 @@ public class Principal extends javax.swing.JFrame{
                                 {
                                         case"Libros":
                                                 campos = new String[10];
-                                                campos[0] = "ID";
-                                                campos[1] = "ISBN";
-                                                campos[2] = "TITULO";
-                                                campos[3] = "NOMBRE";
-                                                campos[4] = "APELLIDO1";
-                                                campos[5] = "APELLIDO2";
-                                                campos[6] = "PUBLICACION";
-                                                campos[7] = "EDITORIAL";
-                                                campos[8] = "EDICION";
-                                                campos[9] = "GENERO";
+                                                campos[0] = "Id_Libros";
+                                                campos[1] = "ISBD_Libro";
+                                                campos[2] = "Titulo_Libro";
+                                                campos[3] = "Nombre_Autor_Libro";
+                                                campos[4] = "Pimer_Apellido_Autor_Libro";
+                                                campos[5] = "Segundo_Apellido_Autor_Libro";
+                                                campos[6] = "Fecha_Pub_Libro";
+                                                campos[7] = "Editorial_Libro";
+                                                campos[8] = "Edicion_Libro";
+                                                campos[9] = "Genero_Libro";
 
                                                 mostrarTabla("");
                                         break;
                                         case "Revistas":
-                                                campos = new String[10];
-                                                campos[0] = "ID";
-                                                campos[1] = "ISBN";
-                                                campos[2] = "NOMBRE";
-                                                campos[3] = "ANIO";
-                                                campos[4] = "EDITORIAL";
-                                                campos[5] = "CIUDAD";
-                                                campos[6] = "VOLUMEN";
-                                                campos[7] = "NUMERO";
-                                                campos[8] = "AUTOR";
-                                                campos[9] = "APELLIDO1";
-                                                campos[10] = "APELLIDO2";
+                                                campos = new String[11];
+                                                campos[0] = "Id_Revista";
+                                                campos[1] = "ISBN_Revista";
+                                                campos[2] = "Nombre_Revista";
+                                                campos[3] = "Anio_Revista";
+                                                campos[4] = "Editorial_Revista";
+                                                campos[5] = "Ciudad_Revista";
+                                                campos[6] = "Volumen_Revista";
+                                                campos[7] = "Numero_Revista";
+                                                campos[8] = "Autor_Revista";
+                                                campos[9] = "Primer_Apellido_Autor_Revista";
+                                                campos[10] = "Segundo_Apellido_Autor_Revista";
 
                                                 mostrarTabla("");
                                         break;
                                         case "Investigaciones":
-                                                campos = new String[10];
-                                                campos[0] = "ID";
-                                                campos[1] = "FECHA";
-                                                campos[2] = "NOMBRE";
-                                                campos[3] = "TEMA";
-                                                campos[4] = "AUTOR1";
-                                                campos[5] = "APELLIDO1";
-                                                campos[6] = "APELLIDO2";
-                                                campos[7] = "EDICION";
-                                                campos[8] = "FECHATERMINADO";
+                                                campos = new String[9];
+                                                campos[0] = "Id_Investigacion";
+                                                campos[1] = "Fecha_Investigacion";
+                                                campos[2] = "Nombre_Investigacion";
+                                                campos[3] = "Tema_Investigacion";
+                                                campos[4] = "Nombre_Autor_Principal";
+                                                campos[5] = "Apellido_Paterno_Autor_Principal";
+                                                campos[6] = "Apellido_Materno_Autor_Principal";
+                                                campos[7] = "Edicion_Investigacion";
+                                                campos[8] = "Fecha_Terminacion_Investigacion";
 
                                                 mostrarTabla("");
                                         break;
                                         case "Software":
-                                                campos = new String[10];
-                                                campos[0] = "ID";
-                                                campos[1] = "NOMBRE";
-                                                campos[2] = "EMPRESA";
-                                                campos[3] = "DESARROLLADOR";
-                                                campos[4] = "FECHA";
-                                                campos[5] = "VERSION";
-                                                campos[6] = "TIPO";
-                                                campos[7] = "COMPATIBILIDAD";
-
+                                                campos = new String[8];
+                                                campos[0] = "Id_Software";
+                                                campos[1] = "Nombre_Software";
+                                                campos[2] = "Empresa_Software";
+                                                campos[3] = "Desarrollador_Principal";
+                                                campos[4] = "Fecha_Lanzamiento";
+                                                campos[5] = "Version_Software";
+                                                campos[6] = "Tipo_Software";
+                                                campos[7] = "Compatibilidad_SO";
                                                 mostrarTabla("");
                                         break;
 
@@ -290,40 +289,28 @@ public class Principal extends javax.swing.JFrame{
 
                 DefaultTableModel modelo = new DefaultTableModel();
 
-                modelo.addColumn(campos[0]);
-                modelo.addColumn(campos[1]);
-                modelo.addColumn(campos[2]);
-                modelo.addColumn(campos[3]);
-                modelo.addColumn(campos[4]);
-                modelo.addColumn(campos[5]);
-                modelo.addColumn(campos[6]);
-                modelo.addColumn(campos[7]);
-                modelo.addColumn(campos[8]);
-                modelo.addColumn(campos[9]);
-
+                for(int i = 0; i < campos.length; i++)
+                {
+                        modelo.addColumn(campos[i]);
+                }
                 table.setModel(modelo);
 
-                String sql = "select * from "+ selecciónTabla + " where concat (Titulo_Libro,' ',Nombre_Autor_Libro) LIKE '%"+string+"%'";
+                String sql = "select * from "+ selecciónTabla + " where concat ("+campos[3]+",' ',"+campos[4]+") LIKE '%"+string+"%'";
 
-                String datos[] = new String[10];
+                String datos[] = new String[campos.length];
 
                 Statement st;
 
                 try {
                         st = cn.createStatement();
                         ResultSet rs =st.executeQuery(sql);
-                        while(rs.next()){
-                                datos[0]=rs.getString(1);
-                                datos[1]=rs.getString(2);
-                                datos[2]=rs.getString(3);
-                                datos[3]=rs.getString(4);
-                                datos[4]=rs.getString(5);
-                                datos[5]=rs.getString(6);
-                                datos[6]=rs.getString(7);
-                                datos[7]=rs.getString(8);
-                                datos[8]=rs.getString(9);
-                                datos[9]=rs.getString(10);
-
+                        while(rs.next())
+                        {
+                                // For que rellana la tabla dependiendo de la tabla seleccionada en SQL.
+                                for(int i = 0; i < datos.length; i++)
+                                {
+                                        datos[i]=rs.getString(  i+1);
+                                }
                                 modelo.addRow(datos);
                         }
 

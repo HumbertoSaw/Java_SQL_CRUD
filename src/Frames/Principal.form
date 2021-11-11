@@ -12,7 +12,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="cec77" class="javax.swing.JLabel" binding="LabelRegistroLibros">
+      <component id="cec77" class="javax.swing.JLabel" binding="labelTitulo">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -20,10 +20,10 @@
           <enabled value="true"/>
           <font name="Verdana" size="18"/>
           <foreground color="-16777216"/>
-          <text value="Registro de libros"/>
+          <text value="Registro"/>
         </properties>
       </component>
-      <grid id="41950" binding="PanelRegistroLibros" layout-manager="GridLayoutManager" row-count="13" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="41950" binding="PanelRegistro" layout-manager="GridLayoutManager" row-count="14" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
@@ -35,41 +35,41 @@
           <inheritsPopupMenu value="false"/>
           <name value="textField2"/>
         </properties>
-        <border type="line" title="Registro de libros" title-justification="2">
+        <border type="none" title-justification="2">
           <font name="Verdana" size="16" style="1"/>
           <color color="-10589253"/>
         </border>
         <children>
-          <component id="95f2d" class="javax.swing.JLabel">
+          <component id="95f2d" class="javax.swing.JLabel" binding="label1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="ID"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="26a5a" class="javax.swing.JLabel">
+          <component id="26a5a" class="javax.swing.JLabel" binding="label2">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="ISBN"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="2dbcb" class="javax.swing.JLabel">
+          <component id="2dbcb" class="javax.swing.JLabel" binding="label3">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Titulo"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="a40ee" class="javax.swing.JLabel">
+          <component id="a40ee" class="javax.swing.JLabel" binding="label4">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Autor"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="4591a" class="javax.swing.JTextField" binding="txtID">
@@ -126,7 +126,7 @@
           </component>
           <component id="34c52" class="javax.swing.JButton" binding="updateBtn">
             <constraints>
-              <grid row="10" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <autoscrolls value="true"/>
@@ -138,7 +138,7 @@
           </component>
           <component id="e3f99" class="javax.swing.JButton" binding="saveBtn">
             <constraints>
-              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <autoscrolls value="true"/>
@@ -148,52 +148,52 @@
               <text value="Guardar"/>
             </properties>
           </component>
-          <component id="31f2c" class="javax.swing.JLabel">
+          <component id="31f2c" class="javax.swing.JLabel" binding="label5">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Primer apellido"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="78456" class="javax.swing.JLabel">
+          <component id="78456" class="javax.swing.JLabel" binding="label6">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Segundo apellido"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="1e915" class="javax.swing.JLabel">
+          <component id="1e915" class="javax.swing.JLabel" binding="label7">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Fecha de publicación"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="84616" class="javax.swing.JLabel">
+          <component id="84616" class="javax.swing.JLabel" binding="label8">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Editorial"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="cf1d4" class="javax.swing.JLabel">
+          <component id="cf1d4" class="javax.swing.JLabel" binding="label9">
             <constraints>
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Edición"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="57251" class="javax.swing.JLabel">
+          <component id="57251" class="javax.swing.JLabel" binding="label10">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Genero"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="bb711" class="javax.swing.JTextField" binding="txtLastName">
@@ -259,7 +259,7 @@
           </component>
           <component id="4e12f" class="javax.swing.JButton" binding="cancelBtn">
             <constraints>
-              <grid row="11" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="12" column="2" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <autoscrolls value="true"/>
@@ -272,7 +272,7 @@
           </component>
           <component id="f4e4b" class="javax.swing.JButton" binding="deleteBtn">
             <constraints>
-              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <autoscrolls value="true"/>
@@ -284,9 +284,29 @@
           </component>
           <component id="a9c1b" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
             <constraints>
-              <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
+          </component>
+          <component id="5450d" class="javax.swing.JLabel" binding="label11">
+            <constraints>
+              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="f6664" class="javax.swing.JTextField" binding="textField11">
+            <constraints>
+              <grid row="10" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <text value=""/>
+              <visible value="true"/>
+            </properties>
           </component>
         </children>
       </grid>

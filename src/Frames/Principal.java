@@ -191,7 +191,23 @@ public class Principal extends javax.swing.JFrame{
                                                 campos[7] = "Editorial_Libro";
                                                 campos[8] = "Edicion_Libro";
                                                 campos[9] = "Genero_Libro";
+                                                // Colocar las labels correspondientes a la tabla
+                                                label1.setText("Id");
+                                                label2.setText("ISBD");
+                                                label3.setText("Titulo");
+                                                label4.setText("Nombre");
+                                                label5.setText("Primer Apellido");
+                                                label6.setText("Segund Apellido");
+                                                label7.setText("Fecha");
+                                                label8.setText("Editorial");
+                                                label9.setText("Edicion");
+                                                label10.setText("Genero");
 
+                                                // Cambiar el titulo
+                                                labelTitulo.setText("Registro de libros");
+                                                // Quitar lo restante.
+                                                label11.setVisible(false);
+                                                textField11.setVisible(false);
                                                 mostrarTabla("");
                                         break;
                                         case "Revistas":
@@ -207,6 +223,26 @@ public class Principal extends javax.swing.JFrame{
                                                 campos[8] = "Autor_Revista";
                                                 campos[9] = "Primer_Apellido_Autor_Revista";
                                                 campos[10] = "Segundo_Apellido_Autor_Revista";
+
+                                                // Colocar visibles el text field y el label
+                                                label11.setVisible(true);
+                                                textField11.setVisible(true);
+
+                                                // Colocar las labels correspondientes a la tabla
+                                                label1.setText("ID");
+                                                label2.setText("ISBN");
+                                                label3.setText("Nombre");
+                                                label4.setText("Año");
+                                                label5.setText("Editorial");
+                                                label6.setText("Ciudad");
+                                                label7.setText("Volumen");
+                                                label8.setText("Numero");
+                                                label9.setText("Autor");
+                                                label10.setText("Primer apellido");
+                                                label11.setText("Segundo apellido");
+
+                                                // Cambiar el titulo del registro.
+                                                labelTitulo.setText("Registro de revistas");
 
                                                 mostrarTabla("");
                                         break;
@@ -352,8 +388,8 @@ public class Principal extends javax.swing.JFrame{
         private JButton cancelBtn;
         private JButton reportButton;
         private JPanel Jpanel;
-        private JLabel LabelRegistroLibros;
-        private JPanel PanelRegistroLibros;
+        private JLabel labelTitulo;
+        private JPanel PanelRegistro;
         private JTextField txtLastName;
         private JTextField txtLastName2;
         private JTextField txtDatePub;
@@ -364,6 +400,18 @@ public class Principal extends javax.swing.JFrame{
         private JButton deleteBtn;
         private JTextField txtSearch;
         private JComboBox comboBox1;
+        private JLabel label1;
+        private JLabel label2;
+        private JLabel label3;
+        private JLabel label4;
+        private JLabel label5;
+        private JLabel label6;
+        private JLabel label7;
+        private JLabel label8;
+        private JLabel label9;
+        private JLabel label10;
+        private JLabel label11;
+        private JTextField textField11;
         // End of the elements used on the form
         
         Conectar con = new Conectar();

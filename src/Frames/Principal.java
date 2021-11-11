@@ -56,8 +56,7 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try
                                 {
-                                        String sqlSentence1 ="INSERT INTO + libros+ (Id_Libro,ISBD_Libro,Titulo_Libro,Nombre_Autor_Libro,Pimer_Apellido_Autor_Libro,Segundo_Apellido_Autor_Libro,Fecha_Pub_Libro,Editorial_Libro,Edicion_Libro,Genero_Libro) VALUES (?,?,?,?,?,?,?,?,?,?)";
-
+                                        String sqlSentence1 = generarQueryInsert();
                                         PreparedStatement ps = cn.prepareStatement(sqlSentence1);
                                         ps.setString(1, txtID.getText() );
                                         ps.setString(2, txtIsbn.getText());
@@ -181,7 +180,7 @@ public class Principal extends javax.swing.JFrame{
                                 {
                                         case"Libros":
                                                 campos = new String[10];
-                                                campos[0] = "Id_Libros";
+                                                campos[0] = "Id_Libro";
                                                 campos[1] = "ISBD_Libro";
                                                 campos[2] = "Titulo_Libro";
                                                 campos[3] = "Nombre_Autor_Libro";
@@ -208,6 +207,10 @@ public class Principal extends javax.swing.JFrame{
                                                 // Quitar lo restante.
                                                 label11.setVisible(false);
                                                 textField11.setVisible(false);
+
+                                                String sqlPrueba = generarQueryInsert();
+
+                                                System.out.println(sqlPrueba);
                                                 mostrarTabla("");
                                         break;
                                         case "Revistas":
@@ -277,6 +280,32 @@ public class Principal extends javax.swing.JFrame{
 
                         }
                 });
+        }
+
+        private String generarQueryInsert() {
+                String sqlPrueba = "INSERT INTO " +selecciónTabla + "(";
+                for (int i = 0; i <= campos.length - 1; i++)
+                {
+                        if(i ==0)
+                        {
+                                sqlPrueba = sqlPrueba.concat(campos[i]);
+                        }else
+                                sqlPrueba = sqlPrueba.concat(","+campos[i]);
+
+                        if (i == campos.length - 1){
+                                sqlPrueba = sqlPrueba.concat(") VALUES (");
+                                for (int j = 0; j <= campos.length - 1; j++) {// VALUES (?,?,?,?,?,?,?,?,?,?)
+                                        if(j == 0){
+                                                sqlPrueba = sqlPrueba.concat("?");
+                                        }else
+                                                sqlPrueba = sqlPrueba.concat(",?");
+                                        if (j == campos.length - 1){
+                                                sqlPrueba = sqlPrueba.concat(")");
+                                        }
+                                }
+                        }
+                }
+                return sqlPrueba;
         }
 
         /**

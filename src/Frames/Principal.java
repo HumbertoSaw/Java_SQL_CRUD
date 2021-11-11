@@ -57,6 +57,7 @@ public class Principal extends javax.swing.JFrame{
                 jfields[7] = txtEditorial;
                 jfields[8] = txtEdition;
                 jfields[9] = txtGenere;
+                jfields[10] = textField11;
 
                 //mostrarTabla("");
                 mostrarMenu();
@@ -96,8 +97,8 @@ public class Principal extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e)
                         {
                                 try{
-
-                                        PreparedStatement ps =cn.prepareStatement("UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE Id_libro='"+txtID.getText()+"'");
+                                        String sqlStament3 = generarQueryUpdate();
+                                        PreparedStatement ps =cn.prepareStatement(sqlStament3);
 
                                         int respuesta = ps.executeUpdate();
 
@@ -230,7 +231,7 @@ public class Principal extends javax.swing.JFrame{
                                                 campos[5] = "Ciudad_Revista";
                                                 campos[6] = "Volumen_Revista";
                                                 campos[7] = "Numero_Revista";
-                                                campos[8] = "Autor_Revista";
+                                                campos[8] = "Nombre_Autor_Revista";
                                                 campos[9] = "Primer_Apellido_Autor_Revista";
                                                 campos[10] = "Segundo_Apellido_Autor_Revista";
 
@@ -254,6 +255,8 @@ public class Principal extends javax.swing.JFrame{
                                                 // Cambiar el titulo del registro.
                                                 labelTitulo.setText("Registro de revistas");
 
+                                                sqlPrueba = generarQueryUpdate();
+                                                System.out.println(sqlPrueba);
                                                 mostrarTabla("");
                                         break;
                                         case "Investigaciones":
@@ -358,6 +361,24 @@ public class Principal extends javax.swing.JFrame{
                 return sqlPrueba2;
         }
 
+        private String generarQueryUpdate() {
+                //"UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE Id_libro='"+txtID.getText()+"'"
+                String sqlPrueba3 = "UPDATE " + selecciónTabla + " SET ";
+
+                for (int i = 0; i <= campos.length - 1; i++)
+                {
+                        if(i ==0)
+                        {       // Concatenar la primera parte del query para no tener una coma al inicio.
+                                sqlPrueba3 = sqlPrueba3.concat(campos[i] + "=" + "'" +jfields[i].getText() + "'");
+                        }else   // Concatenar lo siguiente ahora si con las comas y comillas simples necesarias.
+                                sqlPrueba3 = sqlPrueba3.concat("," + campos[i] + "=" + "'" +jfields[i].getText() + "'");
+                }
+                // Terminar la concatenación con el WHERE y condición.
+                sqlPrueba3 = sqlPrueba3.concat(" WHERE " + campos[0] + " = " + "'" +jfields[0].getText() + "'");
+
+                return sqlPrueba3;
+        }
+
         /**
          * Function that clean the txt fields.
          */
@@ -372,6 +393,7 @@ public class Principal extends javax.swing.JFrame{
                 txtEditorial.setText("");
                 txtEdition.setText("");
                 txtGenere.setText("");
+                textField11.setText("");
         }
 
         /**

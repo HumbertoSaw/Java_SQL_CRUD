@@ -196,7 +196,7 @@ public class Principal extends javax.swing.JFrame{
                                                 label3.setText("Titulo");
                                                 label4.setText("Nombre");
                                                 label5.setText("Primer Apellido");
-                                                label6.setText("Segund Apellido");
+                                                label6.setText("Segundo Apellido");
                                                 label7.setText("Fecha");
                                                 label8.setText("Editorial");
                                                 label9.setText("Edicion");
@@ -260,6 +260,25 @@ public class Principal extends javax.swing.JFrame{
                                                 campos[6] = "Apellido_Materno_Autor_Principal";
                                                 campos[7] = "Edicion_Investigacion";
                                                 campos[8] = "Fecha_Terminacion_Investigacion";
+                                                //Colocar los labels correspondientes a esta tabla
+                                                label1.setText("Id");
+                                                label2.setText("Fecha");
+                                                label3.setText("Nombre");
+                                                label4.setText("Tema");
+                                                label5.setText("Autor");
+                                                label6.setText("Primer Apellido");
+                                                label7.setText("Segundo Apellido");
+                                                label8.setText("Edicion");
+                                                label9.setText("Finalizacion");
+                                                //Aparecer y desaparecer labels y textField necesarios
+                                                label10.setVisible(false);
+                                                txtGenere.setVisible(false);
+                                                textField11.setVisible(false);
+                                                label11.setVisible(false);
+
+                                                //Cambiar titulo del registro
+                                                labelTitulo.setText("Registro de investigaciones");
+
 
                                                 mostrarTabla("");
                                         break;
@@ -273,6 +292,26 @@ public class Principal extends javax.swing.JFrame{
                                                 campos[5] = "Version_Software";
                                                 campos[6] = "Tipo_Software";
                                                 campos[7] = "Compatibilidad_SO";
+                                                //Colocar los labels correspondientes a esta tabla
+                                                label1.setText("Id");
+                                                label2.setText("Nombre");
+                                                label3.setText("Empresa");
+                                                label4.setText("Derrollador(a)");
+                                                label5.setText("Lanzamiento");
+                                                label6.setText("Version");
+                                                label7.setText("Tipo");
+                                                label8.setText("Compatibilidad");
+                                                //Aparecer y desaparecer labels y textField necesarios
+
+                                                label9.setVisible(false);
+                                                txtGenere.setVisible(false);
+                                                txtEdition.setVisible(false);
+                                                textField11.setVisible(false);
+                                                label11.setVisible(false);
+                                                //Cambiar titulo del registro
+                                                labelTitulo.setText("Registro de software");
+
+
                                                 mostrarTabla("");
                                         break;
 

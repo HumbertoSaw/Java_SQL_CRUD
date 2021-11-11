@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame{
         private String sentenciaSqlDelete;
         private String selecciónTabla = "";
         private String[] campos;
+        private JTextField[] jfields;
 
         /**
          * Constructor of the Principal class
@@ -45,6 +46,18 @@ public class Principal extends javax.swing.JFrame{
                         campos[i] = "";
                 }
 
+                jfields = new JTextField[11];
+                jfields[0] = txtID;
+                jfields[1] = txtIsbn;
+                jfields[2] = txtTitle;
+                jfields[3] = txtAuthor;
+                jfields[4] = txtLastName;
+                jfields[5] = txtLastName2;
+                jfields[6] = txtDatePub;
+                jfields[7] = txtEditorial;
+                jfields[8] = txtEdition;
+                jfields[9] = txtGenere;
+
                 //mostrarTabla("");
                 mostrarMenu();
 
@@ -58,16 +71,10 @@ public class Principal extends javax.swing.JFrame{
                                 {
                                         String sqlSentence1 = generarQueryInsert();
                                         PreparedStatement ps = cn.prepareStatement(sqlSentence1);
-                                        ps.setString(1, txtID.getText() );
-                                        ps.setString(2, txtIsbn.getText());
-                                        ps.setString(3, txtTitle.getText());
-                                        ps.setString(4, txtAuthor.getText());
-                                        ps.setString(5, txtLastName.getText());
-                                        ps.setString(6, txtLastName2.getText());
-                                        ps.setString(7, txtDatePub.getText());
-                                        ps.setString(8, txtEditorial.getText());
-                                        ps.setString(9, txtEdition.getText());
-                                        ps.setString(10,txtGenere.getText());
+
+                                        for (int i = 0; i < campos.length; i++){
+                                                ps.setString(i+1,jfields[i].getText());
+                                        }
 
                                         ps.executeUpdate();
                                         JOptionPane.showMessageDialog(null,"Los datos ah sido guardados");
@@ -130,15 +137,15 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try{
                                 // Create a string with the SQLStatement
-                                String sqlStatement ="DELETE FROM libros WHERE Id_Libro = '"+ txtID.getText()+ "'";
-                                PreparedStatement ps = cn.prepareStatement(sqlStatement);
+                                String sqlSentence2 = generarQueryDelete();
+                                PreparedStatement ps = cn.prepareStatement(sqlSentence2);
 
                                 int respuesta = ps.executeUpdate();
 
                                 if(respuesta > 0)
                                 {
 
-                                        JOptionPane.showMessageDialog(null,"Libro eliminado");
+                                        JOptionPane.showMessageDialog(null,"Registro eliminado");
                                         limpiar();
                                         mostrarTabla("");
                                 }
@@ -345,6 +352,10 @@ public class Principal extends javax.swing.JFrame{
                         }
                 }
                 return sqlPrueba;
+        }
+        private String generarQueryDelete() {
+                String sqlPrueba2 = "DELETE FROM " + selecciónTabla + " WHERE " +campos[0] + "='" +txtID.getText()+"'" ;
+                return sqlPrueba2;
         }
 
         /**

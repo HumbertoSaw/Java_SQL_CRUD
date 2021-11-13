@@ -487,7 +487,6 @@ public class Principal extends javax.swing.JFrame{
         private JButton saveBtn;
         private JButton updateBtn;
         private JButton cancelBtn;
-        private JButton reportButton;
         private JPanel Jpanel;
         private JLabel labelTitulo;
         private JPanel PanelRegistro;

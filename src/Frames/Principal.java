@@ -70,6 +70,7 @@ public class Principal extends javax.swing.JFrame{
                                         // Preparing the call to store the inputs.
                                         CallableStatement ps = cn.prepareCall("{call "+ metodoAltaSeleccion + generarQueryModificar() +"}");
 
+                                        // For que prepara el almacenado, donde consigue los valores almacenados en los campos de texto y los guarda.
                                         for (int i = 0; i < campos.length; i++){
                                                 ps.setString(i+1,jfields[i].getText());
                                                 System.out.print(i+1+" "+jfields[i].getText());
@@ -95,8 +96,14 @@ public class Principal extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e)
                         {
                                 try{
+                                        // Preparar el procedimiento almacenado de modificar
                                         CallableStatement ps = cn.prepareCall("{call "+ metodoModifcacionSeleccion + generarQueryModificar() +"}");
 
+                                        // For que prepara el almacenado, donde consigue los valores almacenados en los campos de texto y los guarda.
+                                        for (int i = 0; i < campos.length; i++){
+                                                ps.setString(i+1,jfields[i].getText());
+                                                System.out.print(i+1+" "+jfields[i].getText());
+                                        }
                                         int respuesta = ps.executeUpdate();
 
                                         if(respuesta>0){

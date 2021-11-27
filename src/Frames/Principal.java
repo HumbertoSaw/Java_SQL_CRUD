@@ -332,27 +332,28 @@ public class Principal extends javax.swing.JFrame{
         }
 
         private String generarQueryInsert() {
-                String sqlPrueba = "INSERT INTO " +selecciónTabla + "(";
+                String sqlPrueba = "call" +selecciónTabla + "(";
                 for (int i = 0; i <= campos.length - 1; i++)
                 {
                         if(i ==0)
                         {
-                                sqlPrueba = sqlPrueba.concat(campos[i]);
+                                sqlPrueba = sqlPrueba.concat(jfields[i].getText());
                         }else
-                                sqlPrueba = sqlPrueba.concat(","+campos[i]);
+                                sqlPrueba = sqlPrueba.concat(","+jfields[i].getText());
 
                         if (i == campos.length - 1){
-                                sqlPrueba = sqlPrueba.concat(") VALUES (");
+                                sqlPrueba = sqlPrueba.concat(")");
+                        }
+                        /*if (i == campos.length - 1){
+                                //sqlPrueba = sqlPrueba.concat(") VALUES (");
                                 for (int j = 0; j <= campos.length - 1; j++) {// VALUES (?,?,?,?,?,?,?,?,?,?)
                                         if(j == 0){
                                                 sqlPrueba = sqlPrueba.concat("?");
                                         }else
                                                 sqlPrueba = sqlPrueba.concat(",?");
-                                        if (j == campos.length - 1){
-                                                sqlPrueba = sqlPrueba.concat(")");
-                                        }
+
                                 }
-                        }
+                        }*/
                 }
                 return sqlPrueba;
         }

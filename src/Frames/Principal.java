@@ -124,7 +124,7 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try{
                                 // Create a string with the SQLStatement
-                                CallableStatement ps = cn.prepareCall("{call "+ metodoBajaSeleccion + "(?)}");
+                                CallableStatement ps = cn.prepareCall("{call "+ metodoBajaSeleccion + "(" + jfields[0].getText()+ ")}");
 
                                 int respuesta = ps.executeUpdate();
 

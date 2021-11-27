@@ -6,10 +6,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Class.Conectar;
-import com.sun.source.tree.TryTree;
 
 import java.awt.event.*;
-import java.beans.PropertyEditorSupport;
 import java.sql.*;
 import java.sql.Connection;
 
@@ -59,7 +57,6 @@ public class Principal extends javax.swing.JFrame{
                 jfields[9] = txtGenere;
                 jfields[10] = textField11;
 
-                //mostrarTabla("");
                 mostrarMenu();
 
                 // adding an action to the save button
@@ -71,7 +68,7 @@ public class Principal extends javax.swing.JFrame{
                                 try
                                 {
                                         // Preparing the call to store the inputs.
-                                        CallableStatement ps = cn.prepareCall("{call "+ metodoAltaSeleccion + generarQueryInsert() +"}");
+                                        CallableStatement ps = cn.prepareCall("{call "+ metodoAltaSeleccion + generarQueryModificar() +"}");
 
                                         for (int i = 0; i < campos.length; i++){
                                                 ps.setString(i+1,jfields[i].getText());
@@ -98,8 +95,7 @@ public class Principal extends javax.swing.JFrame{
                         public void actionPerformed(ActionEvent e)
                         {
                                 try{
-                                        String sqlStament3 = generarQueryUpdate();
-                                        PreparedStatement ps =cn.prepareStatement(sqlStament3);
+                                        CallableStatement ps = cn.prepareCall("{call "+ metodoModifcacionSeleccion + generarQueryModificar() +"}");
 
                                         int respuesta = ps.executeUpdate();
 
@@ -121,17 +117,6 @@ public class Principal extends javax.swing.JFrame{
 
                 });
 
-                // Adding a mouse click listener to select the row.
-                table.addMouseListener(new MouseAdapter()
-                {
-
-                        public void mouseClicked(MouseEvent e)
-                        {
-                                super.mouseClicked(e);
-                                selecionarFila();
-                        }
-                });
-
                 // The main functions when a user press the DELETE button.
                 deleteBtn.addActionListener(new ActionListener() {
                         @Override
@@ -139,8 +124,7 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try{
                                 // Create a string with the SQLStatement
-                                String sqlSentence2 = generarQueryDelete();
-                                PreparedStatement ps = cn.prepareStatement(sqlSentence2);
+                                CallableStatement ps = cn.prepareCall("{call "+ metodoBajaSeleccion + "(?)}");
 
                                 int respuesta = ps.executeUpdate();
 
@@ -162,7 +146,18 @@ public class Principal extends javax.swing.JFrame{
                         }
                 });
 
-                
+                // Adding a mouse click listener to select the row.
+                table.addMouseListener(new MouseAdapter()
+                {
+
+                        public void mouseClicked(MouseEvent e)
+                        {
+                                super.mouseClicked(e);
+                                selecionarFila();
+                        }
+                });
+
+                //Buscar
                 txtSearch.addKeyListener(new KeyAdapter() {
                         @Override
                         public void keyReleased(KeyEvent e) {
@@ -218,7 +213,7 @@ public class Principal extends javax.swing.JFrame{
                                                 label11.setVisible(false);
                                                 textField11.setVisible(false);
 
-                                                String sqlPrueba = generarQueryInsert();
+                                                String sqlPrueba = generarQueryModificar();
 
                                                 // Setear las llamadas para el caso de libros
                                                 metodoAltaSeleccion = "altaLibros";
@@ -226,7 +221,7 @@ public class Principal extends javax.swing.JFrame{
                                                 metodoModifcacionSeleccion = "modificarLibros";
 
                                                 System.out.println(sqlPrueba);
-                                                System.out.println("{call "+ metodoAltaSeleccion + generarQueryInsert() +"}");
+                                                System.out.println("{call "+ metodoAltaSeleccion + generarQueryModificar() +"}");
                                                 mostrarTabla("");
                                         break;
                                         case "Revistas":
@@ -263,14 +258,12 @@ public class Principal extends javax.swing.JFrame{
                                                 // Cambiar el titulo del registro.
                                                 labelTitulo.setText("Registro de revistas");
 
-                                                sqlPrueba = generarQueryUpdate();
 
                                                 // Setear las llamadas para el caso de revistas
                                                 metodoAltaSeleccion = "altaRevistas";
                                                 metodoBajaSeleccion = "bajaRevistas";
                                                 metodoModifcacionSeleccion = "modificarRevistas";
 
-                                                System.out.println(sqlPrueba);
                                                 mostrarTabla("");
                                         break;
                                         case "Investigaciones":
@@ -302,6 +295,11 @@ public class Principal extends javax.swing.JFrame{
 
                                                 //Cambiar titulo del registro
                                                 labelTitulo.setText("Registro de investigaciones");
+
+                                                // Setear las llamadas para el caso de revistas
+                                                metodoAltaSeleccion = "altaInvestigaciones";
+                                                metodoBajaSeleccion = "bajaInvestigaciones";
+                                                metodoModifcacionSeleccion = "modificarInvestigaciones";
 
 
                                                 mostrarTabla("");
@@ -335,6 +333,11 @@ public class Principal extends javax.swing.JFrame{
                                                 //Cambiar titulo del registro
                                                 labelTitulo.setText("Registro de software");
 
+                                                // Setear las llamadas para el caso de revistas
+                                                metodoAltaSeleccion = "altaSoftware";
+                                                metodoBajaSeleccion = "bajaSoftware";
+                                                metodoModifcacionSeleccion = "modificarSoftware";
+
 
                                                 mostrarTabla("");
                                         break;
@@ -345,55 +348,22 @@ public class Principal extends javax.swing.JFrame{
                 });
         }
 
-        private String generarQueryInsert() {
+        private String generarQueryModificar() {
                 String sqlPrueba = " (";
                 for (int i = 0; i <= campos.length - 1; i++)
                 {
                         if(i ==0)
                         {
-                                //sqlPrueba = sqlPrueba.concat(jfields[i].getText());
                                 sqlPrueba = sqlPrueba.concat("?");
                         }else
-                                //sqlPrueba = sqlPrueba.concat(","+jfields[i].getText());
                                 sqlPrueba = sqlPrueba.concat(",?");
 
                         if (i == campos.length - 1){
                                 sqlPrueba = sqlPrueba.concat(")");
                         }
-                        /*if (i == campos.length - 1){
-                                //sqlPrueba = sqlPrueba.concat(") VALUES (");
-                                for (int j = 0; j <= campos.length - 1; j++) {// VALUES (?,?,?,?,?,?,?,?,?,?)
-                                        if(j == 0){
-                                                sqlPrueba = sqlPrueba.concat("?");
-                                        }else
-                                                sqlPrueba = sqlPrueba.concat(",?");
 
-                                }
-                        }*/
                 }
                 return sqlPrueba;
-        }
-        private String generarQueryDelete() {
-                String sqlPrueba2 = "DELETE FROM " + selecciónTabla + " WHERE " +campos[0] + "='" +txtID.getText()+"'" ;
-                return sqlPrueba2;
-        }
-
-        private String generarQueryUpdate() {
-                //"UPDATE libros SET Id_Libro = '"+txtID.getText()+"',ISBD_Libro = '"+txtIsbn.getText()+"',Titulo_Libro = '"+txtTitle.getText()+"',Nombre_Autor_Libro = '"+txtAuthor.getText()+"',Pimer_Apellido_Autor_Libro = '"+txtLastName.getText()+"',Segundo_Apellido_Autor_Libro = '"+txtLastName2.getText()+"',Fecha_Pub_Libro = '"+txtDatePub.getText()+"',Editorial_Libro = '"+txtEditorial.getText()+"',Edicion_Libro = '"+txtEdition.getText()+"',Genero_Libro = '"+txtGenere.getText()+"' WHERE Id_libro='"+txtID.getText()+"'"
-                String sqlPrueba3 = "UPDATE " + selecciónTabla + " SET ";
-
-                for (int i = 0; i <= campos.length - 1; i++)
-                {
-                        if(i ==0)
-                        {       // Concatenar la primera parte del query para no tener una coma al inicio.
-                                sqlPrueba3 = sqlPrueba3.concat(campos[i] + "=" + "'" +jfields[i].getText() + "'");
-                        }else   // Concatenar lo siguiente ahora si con las comas y comillas simples necesarias.
-                                sqlPrueba3 = sqlPrueba3.concat("," + campos[i] + "=" + "'" +jfields[i].getText() + "'");
-                }
-                // Terminar la concatenación con el WHERE y condición.
-                sqlPrueba3 = sqlPrueba3.concat(" WHERE " + campos[0] + " = " + "'" +jfields[0].getText() + "'");
-
-                return sqlPrueba3;
         }
 
         /**

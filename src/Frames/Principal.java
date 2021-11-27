@@ -23,12 +23,12 @@ import java.sql.Connection;
 public class Principal extends javax.swing.JFrame{
 
         // Declaration and initialization of the attributes of the class
-        private String sentenciaSqlInsert;
-        private String sentenciaSqlUpdate;
-        private String sentenciaSqlDelete;
         private String selecciónTabla = "";
         private String[] campos;
         private JTextField[] jfields;
+        private String metodoAltaSeleccion;
+        private String metodoBajaSeleccion;
+        private String metodoModifcacionSeleccion;
 
         /**
          * Constructor of the Principal class
@@ -70,11 +70,12 @@ public class Principal extends javax.swing.JFrame{
                         {
                                 try
                                 {
-                                        String sqlSentence1 = generarQueryInsert();
-                                        PreparedStatement ps = cn.prepareStatement(sqlSentence1);
+                                        // Preparing the call to store the inputs.
+                                        CallableStatement ps = cn.prepareCall("{call "+ metodoAltaSeleccion + generarQueryInsert() +"}");
 
                                         for (int i = 0; i < campos.length; i++){
                                                 ps.setString(i+1,jfields[i].getText());
+                                                System.out.print(i+1+" "+jfields[i].getText());
                                         }
 
                                         ps.executeUpdate();
@@ -179,6 +180,7 @@ public class Principal extends javax.swing.JFrame{
 
                 // Adding a listener to change into the different tables on the DB
                 comboBox1.addActionListener(new ActionListener() {
+
                         @Override
                         public void actionPerformed(ActionEvent e) {
 
@@ -218,7 +220,13 @@ public class Principal extends javax.swing.JFrame{
 
                                                 String sqlPrueba = generarQueryInsert();
 
+                                                // Setear las llamadas para el caso de libros
+                                                metodoAltaSeleccion = "altaLibros";
+                                                metodoBajaSeleccion = "bajaLibros";
+                                                metodoModifcacionSeleccion = "modificarLibros";
+
                                                 System.out.println(sqlPrueba);
+                                                System.out.println("{call "+ metodoAltaSeleccion + generarQueryInsert() +"}");
                                                 mostrarTabla("");
                                         break;
                                         case "Revistas":
@@ -256,6 +264,12 @@ public class Principal extends javax.swing.JFrame{
                                                 labelTitulo.setText("Registro de revistas");
 
                                                 sqlPrueba = generarQueryUpdate();
+
+                                                // Setear las llamadas para el caso de revistas
+                                                metodoAltaSeleccion = "altaRevistas";
+                                                metodoBajaSeleccion = "bajaRevistas";
+                                                metodoModifcacionSeleccion = "modificarRevistas";
+
                                                 System.out.println(sqlPrueba);
                                                 mostrarTabla("");
                                         break;
@@ -332,14 +346,16 @@ public class Principal extends javax.swing.JFrame{
         }
 
         private String generarQueryInsert() {
-                String sqlPrueba = "call" +selecciónTabla + "(";
+                String sqlPrueba = " (";
                 for (int i = 0; i <= campos.length - 1; i++)
                 {
                         if(i ==0)
                         {
-                                sqlPrueba = sqlPrueba.concat(jfields[i].getText());
+                                //sqlPrueba = sqlPrueba.concat(jfields[i].getText());
+                                sqlPrueba = sqlPrueba.concat("?");
                         }else
-                                sqlPrueba = sqlPrueba.concat(","+jfields[i].getText());
+                                //sqlPrueba = sqlPrueba.concat(","+jfields[i].getText());
+                                sqlPrueba = sqlPrueba.concat(",?");
 
                         if (i == campos.length - 1){
                                 sqlPrueba = sqlPrueba.concat(")");
